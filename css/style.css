@@ -61,7 +61,8 @@ h6 {
 }
 body {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  padding-bottom: 3rem;
   background: rgb(32, 201, 151);
   background: radial-gradient(
     circle,
@@ -171,6 +172,7 @@ textarea {
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 1.5em 3em;
+  min-height: 30%;
 }
 
 .box {
@@ -196,10 +198,13 @@ p {
   justify-content: center;
   align-items: center;
   margin-top: 2em;
+  padding-bottom: 10em;
+  position: relative;
 }
 
 .copy-btn {
   position: absolute;
+  z-index: 0;
   margin: auto;
   width: 150px;
   height: 50px;
@@ -222,6 +227,7 @@ footer {
   background-color: #333;
   color: #fff;
   padding-top: 1em;
+  z-index: 1;
 }
 
 .footer-content {
@@ -264,7 +270,7 @@ footer nav a:hover::before {
 
 footer p {
   margin-right: 1em;
-  margin-top: .5em;
+  margin-top: 0.5em;
 }
 
 .fade-in {
@@ -307,14 +313,13 @@ footer p {
   }
 }
 
-/* @media (min-width: 576px) {
+@media (min-width: 576px) {
 }
 @media (min-width: 768px) {
- 
 }
 @media (min-width: 992px) {
 }
 @media (min-width: 1200px) {
 }
 @media (min-width: 1400px) {
-} */
+}
