@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Random Teams</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Barlow+Condensed:wght@100;300;400;500;600&family=Barlow:wght@100;200;300;600;800&family=Inconsolata:wght@200;300;400&family=Open+Sans:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/724aba6682.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <section class="container">
+      <label for=""
+        >Nº Equipos
+        <select name="select" class="select" id="select">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+        </select>
+      </label>
+      <button class="random-btn" id="random">Random</button>
+    </section>
+    <section class="textareas">
+      <label for=""
+        >Alumnos
+        <textarea id="alumnos">
+Ana,Armiche,Alice,Benjamin,Beni,Coral,David Calero,Dani Villalba,Dani Vallejo,Elías,Laura,Fran,Helen,Ismael,Juan,Nacho,Naiara,Nelson,Oliver,Pablo,Sebastián,Vero,David Miró,Alina,Rafa,Dani Sánchez</textarea
+        >
+      </label>
+      <label for=""
+        >Líderes (*)
+        <textarea disabled id="lideres"></textarea>
+      </label>
+    </section>
+    <div id="teamsContainer"></div>
+
+    <footer>
+      <div class="footer-content">
+        <nav>
+          <a href="https://www.linkedin.com/in/nel386/"
+            ><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a
+          >
+          <a href="https://github.com/nel386/"
+            ><i class="fa-brands fa-github"></i> GitHub</a
+          >
+        </nav>
+        <p>
+          Copyright © 2022 Created with <i class="fa-regular fa-heart"></i> by
+          nel386
+        </p>
+      </div>
+    </footer>
+  </body>
+  <script src="js/app.js"></script>
+</html>
