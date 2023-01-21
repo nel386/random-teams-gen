@@ -4,6 +4,22 @@ const teamsContainer = document.getElementById("teamsContainer");
 const copyBtn = document.getElementById("copy");
 
 randomBtn.addEventListener("click", () => {
+  const clearBtn = document.getElementById("clear");
+  clearBtn.addEventListener("click", () => {
+    teamsContainer.classList.add("fade-out");
+    const copyBtnExist = document.querySelector(".btn-div");
+    if (copyBtnExist) {
+      copyBtnExist.classList.add("fade-out");
+    }
+    setTimeout(() => {
+      teamsContainer.innerHTML = "";
+      teamsContainer.classList.remove("fade-out");
+      if (copyBtnExist) {
+        copyBtnExist.remove();
+      }
+    }, 300); // espera 300 milisegundos antes de eliminar los elementos
+  });
+
   teamsContainer.innerHTML = "";
   const alumnos = document.getElementById("alumnos").value.split(",");
   const lideres = document.getElementById("lideres").value.split(",");
@@ -27,61 +43,74 @@ randomBtn.addEventListener("click", () => {
 
   // Repartir lideres en equipos
   for (let i = 0; i < lideres.length; i++) {
-    // Elige un equipo al azar
-    let teamIndex = Math.floor(Math.random() * select.value);
-
-    // Comprueba que no haya ya un líder en ese equipo
-    while (teams[teamIndex].includes("*")) {
-      teamIndex = Math.floor(Math.random() * select.value);
-    }
-
-    teams[teamIndex].push(lideres[i]);
+    // Encontrar el equipo con menos miembros
+    let min = Infinity;
+    let minTeams = [];
+    teams.forEach((team) => {
+      if (team.length < min) {
+        min = team.length;
+        minTeams = [team];
+      } else if (team.length === min) {
+        minTeams.push(team);
+      }
+    });
+    const teamIndex = Math.floor(Math.random() * minTeams.length);
+    minTeams[teamIndex].push(lideres[i]);
   }
 
   // Mostrar los equipos en el HTML
   teams.forEach((team, index) => {
     const teamDiv = document.createElement("div");
     teamDiv.classList.add("fade-in", "box");
-
+  
     const teamName = document.createElement("h2");
     teamName.textContent = `Team ${index + 1}`;
     teamDiv.appendChild(teamName);
-
-    const teamMembers = document.createElement("p");
-    teamMembers.textContent = team.join(", ");
-    teamDiv.appendChild(teamMembers);
-
+  
+    team = team.reverse();
+    team.forEach((member) => {
+      const teamMember = document.createElement("p");
+      if (member.includes("*")) {
+        teamMember.classList.add("leader");
+      }
+      teamMember.textContent = member;
+      teamDiv.appendChild(teamMember);
+    });
     teamsContainer.appendChild(teamDiv);
   });
+  
   // Crear boton de copiar al final del body
-  const btnDiv = document.createElement("div");
-  btnDiv.classList.add("btn-div");
 
-  document.body.appendChild(btnDiv);
-  const copyBtn = document.createElement("button");
-  copyBtn.classList.add("copy-btn");
-  copyBtn.textContent = "Copy Teams";
-  btnDiv.appendChild(copyBtn);
+  if (!document.querySelector(".copy-btn")) {
+    const btnDiv = document.createElement("div");
+    btnDiv.classList.add("btn-div");
 
-  copyBtn.addEventListener("click", async () => {
-    let teamsText = "";
+    document.body.appendChild(btnDiv);
+    const copyBtn = document.createElement("button");
+    copyBtn.classList.add("copy-btn", "fade-in");
+    copyBtn.textContent = "Copy Teams";
+    btnDiv.appendChild(copyBtn);
 
-    // Recorrer cada div de equipo y obtener el texto de sus hijos
-    const teamDivs = teamsContainer.querySelectorAll("div");
-    teamDivs.forEach((teamDiv) => {
-      const teamName = teamDiv.querySelector("h2").textContent;
-      const teamMembers = teamDiv.querySelector("p").textContent;
-      teamsText += `${teamName}: ${teamMembers}\n`;
+    copyBtn.addEventListener("click", async () => {
+      let teamsText = "";
+
+      // Recorrer cada div de equipo y obtener el texto de sus hijos
+      const teamDivs = teamsContainer.querySelectorAll("div");
+      teamDivs.forEach((teamDiv) => {
+        const teamName = teamDiv.querySelector("h2").textContent;
+        const teamMembers = teamDiv.querySelector("p").textContent;
+        teamsText += `${teamName}: ${teamMembers}\n`;
+      });
+
+      // Copiar el texto al portapapeles
+      try {
+        await navigator.clipboard.writeText(teamsText);
+        alert("Equipos copiados!");
+      } catch (err) {
+        console.error("Error al copiar los equipos: ", err);
+      }
     });
-
-    // Copiar el texto al portapapeles
-    try {
-      await navigator.clipboard.writeText(teamsText);
-      alert("Equipos copiados!");
-    } catch (err) {
-      console.error("Error al copiar los equipos: ", err);
-    }
-  });
+  }
 });
 
 function shuffleArray(array) {

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" type="image/jpg" href="src/favicon.ico"/>
+    <link rel="icon" type="image/jpg" href="src/favicon.ico" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Barlow+Condensed:wght@100;300;400;500;600&family=Barlow:wght@100;200;300;600;800&family=Inconsolata:wght@200;300;400&family=Open+Sans:wght@300&display=swap"
@@ -21,7 +21,7 @@
   </head>
   <body>
     <section class="container">
-      <label for=""
+      <label class="label-select" for=""
         >Nº Equipos
         <select name="select" class="select" id="select">
           <option value="1">1</option>
@@ -41,17 +41,18 @@
         </select>
       </label>
       <button class="random-btn" id="random">Random</button>
+      <button id="clear" class="clear-btn">Clear</button>
     </section>
     <section class="textareas">
       <label for=""
         >Alumnos
         <textarea id="alumnos">
-Ana,Armiche,Alice,Benjamin,Beni,Coral,David Calero,Dani Villalba,Dani Vallejo,Elías,Laura,Fran,Helen,Ismael,Juan,Nacho,Naiara,Nelson,Oliver,Pablo,Sebastián,Vero,David Miró,Alina,Rafa,Dani Sánchez</textarea
+Ana,Armiche,Alice,Benjamin,Beni,Coral,David Calero,Dani Villalba,Dani Vallejo,Elías,Laura,Fran,Helen,Ismael,Juan,Nacho,Naiara,Nelson,Oliver,Pablo,Sebastián,Vero</textarea
         >
       </label>
       <label for=""
         >Líderes (*)
-        <textarea id="lideres"></textarea>
+        <textarea id="lideres">David Miró*,Alina*,Rafa*,Dani Sánchez*</textarea>
       </label>
     </section>
     <div id="teamsContainer"></div>
